@@ -9,22 +9,23 @@ export default class App extends Component {
 
   idCounter = 0;
 
+  state = {
+    markers: [],
+    order: [],
+    lat: 12.97,
+    lng: 77.59
+  }
+
   createMarker = (title) => {
     return ({
       id: this.idCounter++,
-      title: title
+      title: title,
+      lat: this.state.lat,
+      lng: this.state.lng
     });
   }
 
-  state = {
-    markers: [this.createMarker('one'),
-              this.createMarker('two'),
-              this.createMarker('three'),
-              this.createMarker('four'),
-              this.createMarker('five')
-            ],
-    order: []
-  }
+
 
   setOrder = (order) => {
     if(this.equals(order, this.state.order))
@@ -55,6 +56,7 @@ export default class App extends Component {
   } 
 
   render () {
+    console.log(this.state.lat, this.state.lng);
     return (
       <div className="container row">
         <div className="col-6">
@@ -63,9 +65,20 @@ export default class App extends Component {
                       delete={this.deleteMarker}
                       setOrder={this.setOrder}/>
         </div>
-        <Map />
+        <Map lat={this.state.lat}
+             lng={this.state.lng}
+             markers={this.state.markers}
+             setCenter={this.setCenter}
+        />
       </div>
     );
+  }
+
+  setCenter = ({lat, lng}) => {
+    this.setState ({
+      lat,
+      lng
+    });
   }
 
   equals = (arr1, arr2) => {

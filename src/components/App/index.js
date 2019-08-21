@@ -13,7 +13,8 @@ export default class App extends Component {
     markers: [],
     order: [],
     lat: 12.97,
-    lng: 77.59
+    lng: 77.59,
+    zoom: 16
   }
 
   createMarker = (title) => {
@@ -30,7 +31,6 @@ export default class App extends Component {
   setOrder = (order) => {
     if(this.equals(order, this.state.order))
       return;
-    console.log('set order: ', order)
     this.setState({
       order: order
     });
@@ -56,7 +56,6 @@ export default class App extends Component {
   } 
 
   render () {
-    console.log(this.state.lat, this.state.lng);
     return (
       <div className="container row">
         <div className="col-6">
@@ -65,10 +64,14 @@ export default class App extends Component {
                       delete={this.deleteMarker}
                       setOrder={this.setOrder}/>
         </div>
-        <Map lat={this.state.lat}
-             lng={this.state.lng}
-             markers={this.state.markers}
+        <Map markers={this.orderMarkers(this.state.markers, this.state.order)}
              setCenter={this.setCenter}
+             moveMarker={this.setMarkersCoordinats}
+             init={{
+               lat: this.state.lat,
+               lng: this.state.lng,
+               zoom: this.state.zoom
+             }}
         />
       </div>
     );
@@ -79,6 +82,27 @@ export default class App extends Component {
       lat,
       lng
     });
+  }
+
+  setMarkersCoordinats = (id, lat, lng) => {
+    this.setState ((state) => {
+      return( {
+        markers: state.markers.map((marker) => {
+          if(marker.id === id)
+           return { ...marker, lat, lng};
+          return { ...marker};
+        })
+      });
+    });
+  }
+
+  orderMarkers = (markers, order) => {
+    return order.map((num) => {
+      return markers.find((marker) => {
+        return marker.id == num;
+      });
+    }).filter((item) => item);
+
   }
 
   equals = (arr1, arr2) => {

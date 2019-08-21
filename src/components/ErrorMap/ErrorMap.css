@@ -1,0 +1,12 @@
+.error-msg {
+    display: flex;
+    width: 50%;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-family: sans-serif;
+    text-align: center;
+    border: 2px solid black;
+
+}

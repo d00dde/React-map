@@ -37,7 +37,7 @@ export default class MarkerList extends Component {
 
     return (
       <div className="marker-list container" >
-        <ul className="list-group col" 
+        <ul className="list-group col"
         onDragEnd={this.setOrder}>
         {markersJSX}
         </ul>

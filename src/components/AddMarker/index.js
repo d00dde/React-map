@@ -16,6 +16,8 @@ export default class AddMarker extends Component {
 	onSubmit = (e) => {
 		if(e.key !== 'Enter')
 			return
+		if(this.state.value === '')
+			return
 		this.props.addMarker(this.state.value);
 		this.setState({
 			value: ''
@@ -24,11 +26,12 @@ export default class AddMarker extends Component {
 
   render () {
     return (
-      <input type="text" 
-      			 placeholder="Введите название маркера..."
-      			 onChange={this.onChangeInput}	
-      			 value={this.state.value}
-      			 onKeyPress={this.onSubmit}/>
+      <input type="text"
+			 className="form-control"
+			 placeholder="Введите название маркера..."
+			 onChange={this.onChangeInput}
+			 value={this.state.value}
+			 onKeyPress={this.onSubmit}/>
     );
   }
 }

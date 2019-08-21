@@ -58,7 +58,7 @@ export default class App extends Component {
   render () {
     return (
       <div className="container row">
-        <div className="col-6">
+        <div className="col-6 left-container">
           <AddMarker addMarker={this.addMarker}/>
           <MarkerList markers={this.state.markers}
                       delete={this.deleteMarker}

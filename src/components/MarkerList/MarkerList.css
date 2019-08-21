@@ -1,0 +1,31 @@
+.marker-list .list-group-item {
+	 margin: 5px;
+	 width: 100%;
+	 border: 1px solid #009688;
+	 border-radius: 5px;
+	 font-size: 20px;
+	 display: -webkit-flex;
+	 display: -moz-flex;
+	 display: -ms-flex;
+	 display: -o-flex;
+	 display: flex;
+	 justify-content: space-between;
+	 -ms-align-items: center;
+	 align-items: center;
+	 padding-left: 20px;
+	 padding-right: 10px;
+	 padding-bottom: 7px;
+	 padding-top: 5px;
+	 line-height: 35px;
+}
+
+.marker-list .list-group {
+	margin-top: 10px;
+}
+
+.marker-list .list-group-item span{
+	color: #c62828;
+	font-size: 25px;
+	margin: 0;
+	cursor: pointer;
+}

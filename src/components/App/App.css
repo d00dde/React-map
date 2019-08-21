@@ -5,5 +5,9 @@
 	display: -o-flex;
 	display: flex;
 	width: 70%;
-	margin: 0 auto;
+	margin: 15px auto;
+}
+
+.left-container {
+	text-align: center;
 }

@@ -30,13 +30,13 @@ export default class MarkerList extends Component {
         {title}
         <span className='remove'
               onClick={() => this.props.delete(id)}>
-          <i className="fas fa-trash-alt"></i>
+          <i className="far fa-window-close"></i>
         </span>
       </li>
     });
 
     return (
-      <div className="marker-list container" >
+      <div className="marker-list" >
         <ul className="list-group col"
         onDragEnd={this.setOrder}>
         {markersJSX}

@@ -23,9 +23,7 @@
 	margin-top: 10px;
 }
 
-.marker-list .list-group-item span{
-	color: #c62828;
-	font-size: 25px;
-	margin: 0;
+.marker-list .list-group-item img{
 	cursor: pointer;
+	height: 35px;
 }

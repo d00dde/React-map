@@ -66,7 +66,7 @@ export default class App extends Component {
         </div>
         <Map markers={this.orderMarkers(this.state.markers, this.state.order)}
              setCenter={this.setCenter}
-             moveMarker={this.setMarkersCoordinats}
+             setMarkersCoordinats={this.setMarkersCoordinats}
              init={{
                lat: this.state.lat,
                lng: this.state.lng,

@@ -6,26 +6,34 @@ import './Map.css';
 
 export default class Map extends Component {
   
+   state = {
+    error: false
+   }
+
    drawnMarkers = [];
 
   componentDidMount() {
-      if(!window.google)
-          return;
+    if(!window.google) {
+      this.setState({
+        error: true
+      });
+      return;
+    }
   	this.mapTool = new GmapService(this.props.init);
-  	this.mapTool.map.addListener('dragend', () => {
-  		this.props.setCenter(this.mapTool.getCenter());
+  	this.mapTool.getMap().addListener('dragend', () => {
+  	this.props.setCenter(this.mapTool.getCenter());
   	});
   }
 
+  componentDidUpdate () {
+    if(this.state.error)
+      return;
+    this.drawMarkers (this.props.markers);
+    if(this.mapTool) this.mapTool.drawPolyline(this.props.markers);
+  }
+
   render() {
-    if(!window.google) {
-        return <ErrorMap />
-    }
-  	this.drawMarkers (this.props.markers);
-  	if(this.mapTool) this.mapTool.drawPolyline(this.props.markers);
-    return (
-      <div id='map'></div>
-    );
+    return this.state.error ? <ErrorMap /> : <div id='map'></div>;
   }
 
   drawMarkers = (markers) => {
@@ -35,6 +43,7 @@ export default class Map extends Component {
        marker.id = id;
        marker.addListener('drag', () => this.mapTool.refreshPolyline(this.drawnMarkers));
        marker.addListener('dragend', () => this.markerDragend(marker));
+       marker.addListener('click', () => this.mapTool.showAddress(marker));
        this.drawnMarkers.push(marker);
       });
   }
@@ -48,11 +57,8 @@ export default class Map extends Component {
 
   markerDragend = (marker) => {
       const coord = this.mapTool.getCoordinats(marker);
-      this.props.moveMarker (marker.id, coord.lat, coord.lng);
+      this.props.setMarkersCoordinats(marker.id, coord.lat, coord.lng);
   }
-
-
-
 }
 
 

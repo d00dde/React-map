@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import Sortable from 'Sortable'
-import './MarkerList.css'
+import Sortable from 'Sortable';
+import './MarkerList.css';
+import delIcon from './delete.png';
+
 
 export default class MarkerList extends Component {
   
@@ -28,10 +30,9 @@ export default class MarkerList extends Component {
     const markersJSX = this.props.markers.map(({id, title}) => {
       return <li className="list-group-item" key={id} id={id}>
         {title}
-        <span className='remove'
-              onClick={() => this.props.delete(id)}>
-          <i className="far fa-window-close"></i>
-        </span>
+        <img src={delIcon} 
+             alt='delete icon'
+             onClick={() => this.props.delete(id)}/>
       </li>
     });
 

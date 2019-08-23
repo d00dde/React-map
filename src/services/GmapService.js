@@ -1,4 +1,4 @@
-export default class G_mapService {
+export default class GmapService {
 	
 	constructor (props) {
 
@@ -15,6 +15,10 @@ export default class G_mapService {
           center: {lat, lng}
         });
    }
+
+  static isMapNotAvalable() {
+    return !window.google;
+  } 
 
    getMap = () => {
     return this._map;

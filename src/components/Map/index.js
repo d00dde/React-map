@@ -13,7 +13,7 @@ export default class Map extends Component {
    drawnMarkers = [];
 
   componentDidMount() {
-    if(!window.google) {
+    if(GmapService.isMapNotAvalable()) {
       this.setState({
         error: true
       });
